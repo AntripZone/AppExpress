@@ -1,0 +1,117 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de gestion de Productos",
+    "descripcion": "Documentacion generada automaticamente",
+    "version": "1.0.0",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/productos/": {
+      "get": {
+        "tags": [
+          "Productos"
+        ],
+        "description": "Obtiene la lista de productos, con filtros opcionales por nombre, categoria, marca y estado activo",
+        "parameters": [
+          {
+            "name": "nombreProducto",
+            "in": "query",
+            "description": "Busqueda parcial por nombre",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Productos"
+        ],
+        "description": "Crea un nuevo producto. El campo activo se asigna automaticamente en true",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos del producto a crear",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombreProducto": {
+                  "type": "string",
+                  "example": "Cafe molido"
+                },
+                "precioUnitario": {
+                  "type": "number",
+                  "example": 25.5
+                },
+                "marca": {
+                  "type": "string",
+                  "example": "Altomayo"
+                },
+                "categoria": {
+                  "type": "string",
+                  "example": "bebidas"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Producto creado exitosamente"
+          },
+          "400": {
+            "description": "Faltan datos obligatorios"
+          }
+        }
+      }
+    },
+    "/productos/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  }
+}
