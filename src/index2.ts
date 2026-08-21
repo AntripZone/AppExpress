@@ -1,14 +1,17 @@
 import express from "express";
+import cors from "cors";
 import type { Request, Response, NextFunction } from "express";
 import { cargarData } from "./data/data.js";
 import productosRoute from "./router/productosRouter.js";
 import swaggerUi from "swagger-ui-express";
 import fs from "node:fs";
 import path from "node:path";
+import dotenv from "dotenv";
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT ?? 3000;
 
+app.use(cors());
 app.use(express.json());
 
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -20,6 +23,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 const swaggerFilePath = path.resolve("./src/swagger-output.json");
 if (fs.existsSync(swaggerFilePath)) {
   const swaggerDocument = JSON.parse(fs.readFileSync(swaggerFilePath, "utf-8"));
+  delete swaggerDocument.host;
+  delete swaggerDocument.schemes;
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 } else {
   console.log("archivo swagger-output.json no encontrado");

@@ -16,10 +16,6 @@ interface crearProducto {
 };
 
 interface actualizarProducto {
-  nombreProducto: string;
-  precioUnitario: number;
-  marca: string;
-  categoria: string;
   activo: boolean;
 };
 

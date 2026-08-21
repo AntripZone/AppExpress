@@ -2,9 +2,8 @@
   "swagger": "2.0",
   "info": {
     "title": "API de gestion de Productos",
-    "descripcion": "Documentacion generada automaticamente",
-    "version": "1.0.0",
-    "description": ""
+    "description": "Documentacion generada automaticamente",
+    "version": "1.0.0"
   },
   "host": "localhost:3000",
   "basePath": "/",
@@ -17,12 +16,12 @@
         "tags": [
           "Productos"
         ],
-        "description": "Obtiene la lista de productos, con filtros opcionales por nombre, categoria, marca y estado activo",
+        "description": "Obtiene la lista de productos, con filtros opcionales por nombre",
         "parameters": [
           {
             "name": "nombreProducto",
             "in": "query",
-            "description": "Busqueda parcial por nombre",
+            "description": "Busqueda por nombre",
             "type": "string"
           }
         ],
@@ -52,7 +51,7 @@
                 },
                 "precioUnitario": {
                   "type": "number",
-                  "example": 25.5
+                  "example": 25
                 },
                 "marca": {
                   "type": "string",
@@ -78,13 +77,17 @@
     },
     "/productos/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Productos"
+        ],
+        "description": "Obtiene la lista de un producto",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "Id del producto"
           }
         ],
         "responses": {
@@ -94,21 +97,71 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Productos"
+        ],
+        "description": "Actualiza el estado de un producto",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Id del producto"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Actualizar activo",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "activo": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "404": {
             "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Productos"
+        ],
+        "description": "Eliminar Producto",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Id del producto a eliminar"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Nuevo estado",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }

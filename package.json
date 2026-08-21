@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "swagger": "tsx src/swagger.ts",
-    "dev": "pnpm run swagger && tsx watch src/index2.ts",
+    "dev": "pnpm run swagger && tsx --env-file=.env --watch  src/index2.ts",
     "build": "tsc",
     "start": "node dist/index2.js"
   },
@@ -16,6 +16,8 @@
   "license": "ISC",
   "packageManager": "pnpm@10.33.2",
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/dotenv": "^8.2.3",
     "@types/express": "^5.0.6",
     "@types/node": "^26.2.0",
     "@types/swagger-ui-express": "^4.1.8",
@@ -24,6 +26,9 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "cores": "^0.8.5",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "swagger-ui-express": "^5.0.1"
   }

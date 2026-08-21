@@ -1,12 +1,11 @@
 import swaggerAutogen from "swagger-autogen";
 
 const doc = {
-    info:{
-        title: "API de gestion de Productos",
-        descripcion: "Documentacion generada automaticamente",
-        version: "1.0.0"
-    },
-    host: "localhost:3000",
+  info: {
+    title: "API de gestion de Productos",
+    description: "Documentacion generada automaticamente",
+    version: "1.0.0",
+  },
 };
 
 const outputFile = "./src/swagger-output.json";
